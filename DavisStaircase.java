@@ -11,35 +11,20 @@ public class Solution {
         int s = in.nextInt();
         for(int a0 = 0; a0 < s; a0++){
             int n = in.nextInt();
-            int[] memory = new int[n];
-            memory = numberOfWaysToReachTop(n, memory);
-            System.out.println(memory[n-1]);
+            System.out.println(numberOfWaysToReachTop(n));
         }
     }
     
-    private static int[] numberOfWaysToReachTop(int steps, int[] memory) {     
-        if(memory[steps-1] != 0) {
-            return memory;
+    private static long numberOfWaysToReachTop(int steps) {
+        long[] result = new long[Math.max(steps, 3)];
+        result[0] = 1;
+        result[1] = 2;
+        result[2] = 4;
+        
+        for(int i=3; i<result.length; i++) {
+            result[i] = result[i-1] + result[i-2] + result[i-3];
         }
         
-        if(steps == 1) {
-            memory[steps-1] = 1;
-            return memory;
-        }
-        if(steps == 2) {
-            memory[steps-1] = 2;
-            return memory;
-        }
-        if(steps == 3) {
-            memory[steps-1] = 4;
-            return memory;
-        }
-        
-        memory = numberOfWaysToReachTop(steps-1, memory);
-        memory = numberOfWaysToReachTop(steps-2, memory);
-        memory = numberOfWaysToReachTop(steps-3, memory);
-        int result = memory[steps-2] + memory[steps-3] + memory[steps-4];
-        memory[steps-1] = result;
-        return memory;
+        return result[steps-1];
     }
 }
