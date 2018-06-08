@@ -1,4 +1,4 @@
-public class HelloWorld{
+public class LinkedListPractice {
 
     public static class Node {
     
@@ -13,6 +13,8 @@ public class HelloWorld{
     public static class LinkedList {
         
         public Node head;
+
+        public int size = 0;
         
         public void addFirst(int data) {
             Node n = new Node(data);
@@ -22,6 +24,7 @@ public class HelloWorld{
                 n.next = this.head;
                 this.head = n;
             }
+            size++;
         }
         
         public void addLast(int data) {
@@ -33,8 +36,9 @@ public class HelloWorld{
                 while (cur.next != null) {
                     cur = cur.next;
                 }
-                cur.next = n;    
+                cur.next = n;
             }
+            size++;
         }
         
         public void removeDuplicates() {
@@ -48,6 +52,7 @@ public class HelloWorld{
                 while (runner.next != null) {
                     if (runner.next.data == cur.data) {
                         runner.next = runner.next.next;    
+                        size--;
                     } else {
                         runner = runner.next;
                     }
@@ -56,15 +61,26 @@ public class HelloWorld{
             }
         }
         
+        public Node findKthToLastItem(int k) {
+            Node cur = this.head;
+            
+            for (int i=0; i<(this.size-k); i++) {
+                cur = cur.next;
+            }
+            
+            return cur;
+        }
+        
         public void print() {
             Node cur = this.head;
             if (this.head == null) {
                return;
             }
             
+            System.out.println(cur.data);
             while (cur.next != null) {
-                System.out.println(cur.data);
                 cur = cur.next;
+                System.out.println(cur.data);
             }
             System.out.println("--------------------------");
         }
@@ -80,5 +96,7 @@ public class HelloWorld{
         l.print();
         l.removeDuplicates();
         l.print();
+        
+        System.out.println(l.findKthToLastItem(2).data);
      }
 }
