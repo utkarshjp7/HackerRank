@@ -1,7 +1,7 @@
 public class LinkedListPractice {
 
     public static class Node {
-    
+        
         public int data;
         public Node next;
         
@@ -91,6 +91,26 @@ public class LinkedListPractice {
             return cur;
         }
         
+        public void deleteMiddleNode(Node node) {
+            //assume you only have access to the given node.
+            if(node.next == null) {
+                return;
+            }
+            
+            Node nextNode = node.next;
+            node.data = nextNode.data;
+            node.next = nextNode.next;
+        }
+        
+        public Node findNode(int data) {
+            Node cur = this.head;
+            while (cur != null) {
+                if (cur.data == data)
+                    return cur;
+                cur = cur.next;
+            }
+            return null;
+        }
         
         public void print() {
             Node cur = this.head;
@@ -115,9 +135,11 @@ public class LinkedListPractice {
         }
         
         l.print();
-        l.removeDuplicates();
+        //l.removeDuplicates();
+        //System.out.println(l.findKthToLastItem2(11).data);
+        l.deleteMiddleNode(l.findNode(-2));
         l.print();
         
-        System.out.println(l.findKthToLastItem2(11).data);
+        
      }
 }
