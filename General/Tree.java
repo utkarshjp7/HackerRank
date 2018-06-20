@@ -52,6 +52,19 @@ public class TreePractice {
         }
     }
     
+    public static boolean isValidBinaryTree(TreeNode root, int min, int max) {
+        if (root == null) return true;
+        
+        boolean isLeftChildValidTree = isValidBinaryTree(root.left, min, root.data);
+        boolean isRightChildValidTree = isValidBinaryTree(root.right, root.data, max);
+
+        if (root.data > max || root.data < min) {
+            return false;
+        }
+        
+        return isLeftChildValidTree && isRightChildValidTree;
+    }
+    
     public static ArrayList<LinkedList<TreeNode>> createLinkeddListForEachDepth(TreeNode root) {
         ArrayList<LinkedList<TreeNode>> result = new ArrayList<>();        
         LinkedList<TreeNode> curLevel = new LinkedList<>();
