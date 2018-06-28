@@ -28,6 +28,31 @@ public class TreePractice {
                 }
             }
         }
+        
+        public void inorderTraversal(TreeNode node) {
+            if (node == null) return;
+            
+            inorderTraversal(node.left);
+            System.out.println(node.data);
+            inorderTraversal(node.right);
+        }
+        
+        
+        public void preorderTraversal(TreeNode node) {
+            if (node == null) return;
+            
+            System.out.println(node.data);
+            preorderTraversal(node.left);
+            preorderTraversal(node.right);
+        }
+        
+        public void postorderTraversal(TreeNode node) {
+            if (node == null) return;
+            
+            postorderTraversal(node.left);
+            postorderTraversal(node.right);
+            System.out.println(node.data);
+        }
     }
 
     public static void main(String[] args) {
